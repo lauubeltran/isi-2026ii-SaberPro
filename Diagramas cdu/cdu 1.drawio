@@ -51,9 +51,9 @@
         <mxCell id="nSyZG5NL6eq4MJgy1CU5-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Enviar el listado de estudiantes" vertex="1">
           <mxGeometry height="60" width="110" x="-468" y="310" as="geometry" />
         </mxCell>
-        <mxCell id="nSyZG5NL6eq4MJgy1CU5-3" edge="1" parent="1" source="Zn4KV57l6wXViuU_yeFq-10" style="endArrow=none;html=1;rounded=0;endFill=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="nSyZG5NL6eq4MJgy1CU5-2" value="">
+        <mxCell id="nSyZG5NL6eq4MJgy1CU5-3" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;endFill=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="nSyZG5NL6eq4MJgy1CU5-2" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
-            <mxPoint x="-610" y="340" as="sourcePoint" />
+            <mxPoint x="-620" y="320" as="sourcePoint" />
             <mxPoint x="-455" y="310" as="targetPoint" />
           </mxGeometry>
         </mxCell>
