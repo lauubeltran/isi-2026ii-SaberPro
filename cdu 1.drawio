@@ -8,7 +8,7 @@
           <mxGeometry height="6.664623166225283" width="6.675056817307937" x="-101.47435909222213" y="85.3933340297483" as="geometry" />
         </mxCell>
         <mxCell id="Zn4KV57l6wXViuU_yeFq-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
-          <mxGeometry height="290" width="332" x="-579" y="110" as="geometry" />
+          <mxGeometry height="420" width="332" x="-579" y="110" as="geometry" />
         </mxCell>
         <mxCell id="Zn4KV57l6wXViuU_yeFq-18" edge="1" parent="1" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" target="Zn4KV57l6wXViuU_yeFq-17">
           <mxGeometry relative="1" as="geometry">
@@ -39,13 +39,16 @@
         <mxCell id="Zn4KV57l6wXViuU_yeFq-20" edge="1" parent="1" source="Zn4KV57l6wXViuU_yeFq-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;innerLoopWaypoints=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="Zn4KV57l6wXViuU_yeFq-7">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="Zn4KV57l6wXViuU_yeFq-25" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;b&gt;Sistema de gestión y seguimiento de las Pruebas Saber Pro&lt;/b&gt;" vertex="1">
+        <mxCell id="Zn4KV57l6wXViuU_yeFq-25" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;b&gt;Gestión de Pruebas Saber Pro&lt;/b&gt;" vertex="1">
           <mxGeometry height="30" width="210" x="-518" y="120.00000000000003" as="geometry" />
         </mxCell>
-        <mxCell id="nSyZG5NL6eq4MJgy1CU5-7" edge="1" parent="1" source="nSyZG5NL6eq4MJgy1CU5-2" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;endArrow=none;endFill=0;" target="nSyZG5NL6eq4MJgy1CU5-5">
+        <mxCell id="nSyZG5NL6eq4MJgy1CU5-7" edge="1" parent="1" source="XvxAyPUtX2SYixLEhX7e-1" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;endArrow=none;endFill=0;" target="nSyZG5NL6eq4MJgy1CU5-5">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="nSyZG5NL6eq4MJgy1CU5-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Realizar el listado de estudiantes" vertex="1">
+        <mxCell id="XvxAyPUtX2SYixLEhX7e-2" edge="1" parent="1" source="nSyZG5NL6eq4MJgy1CU5-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=block;endFill=1;dashed=1;" target="XvxAyPUtX2SYixLEhX7e-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nSyZG5NL6eq4MJgy1CU5-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Enviar el listado de estudiantes" vertex="1">
           <mxGeometry height="60" width="110" x="-468" y="310" as="geometry" />
         </mxCell>
         <mxCell id="nSyZG5NL6eq4MJgy1CU5-3" edge="1" parent="1" source="Zn4KV57l6wXViuU_yeFq-10" style="endArrow=none;html=1;rounded=0;endFill=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="nSyZG5NL6eq4MJgy1CU5-2" value="">
@@ -59,6 +62,12 @@
         </mxCell>
         <mxCell id="nSyZG5NL6eq4MJgy1CU5-5" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Coordinación" vertex="1">
           <mxGeometry height="115" width="60" x="-210" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="XvxAyPUtX2SYixLEhX7e-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Recibir listado&amp;nbsp;" vertex="1">
+          <mxGeometry height="60" width="110" x="-468" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="XvxAyPUtX2SYixLEhX7e-3" parent="1" style="text;whiteSpace=wrap;html=1;rotation=-90;" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" vertex="1">
+          <mxGeometry height="40" width="100" x="-442.99872981077806" y="370.00050807568874" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
