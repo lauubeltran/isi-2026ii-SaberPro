@@ -39,7 +39,7 @@
         <mxCell id="Zn4KV57l6wXViuU_yeFq-20" edge="1" parent="1" source="Zn4KV57l6wXViuU_yeFq-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;innerLoopWaypoints=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="Zn4KV57l6wXViuU_yeFq-7">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="Zn4KV57l6wXViuU_yeFq-25" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;b&gt;Sistema de gestión y seguimiento de las Pruebas Saber Pro&lt;/b&gt;" vertex="1">
+        <mxCell id="Zn4KV57l6wXViuU_yeFq-25" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;b&gt;Gestión de Pruebas Saber Pro&lt;/b&gt;" vertex="1">
           <mxGeometry height="30" width="210" x="-509.5" y="85.39000000000003" as="geometry" />
         </mxCell>
         <mxCell id="9DcjfHQAoX33oRP8SUtt-4" parent="1" style="text;whiteSpace=wrap;html=1;rotation=-30;" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" vertex="1">

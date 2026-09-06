@@ -45,7 +45,7 @@
         <mxCell id="nSyZG5NL6eq4MJgy1CU5-7" edge="1" parent="1" source="XvxAyPUtX2SYixLEhX7e-1" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;endArrow=none;endFill=0;" target="nSyZG5NL6eq4MJgy1CU5-5">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="XvxAyPUtX2SYixLEhX7e-2" edge="1" parent="1" source="nSyZG5NL6eq4MJgy1CU5-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=block;endFill=1;dashed=1;" target="XvxAyPUtX2SYixLEhX7e-1">
+        <mxCell id="XvxAyPUtX2SYixLEhX7e-2" edge="1" parent="1" source="XvxAyPUtX2SYixLEhX7e-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endArrow=block;endFill=1;dashed=1;" target="nSyZG5NL6eq4MJgy1CU5-2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="nSyZG5NL6eq4MJgy1CU5-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Enviar el listado de estudiantes" vertex="1">
@@ -67,7 +67,7 @@
           <mxGeometry height="60" width="110" x="-468" y="450" as="geometry" />
         </mxCell>
         <mxCell id="XvxAyPUtX2SYixLEhX7e-3" parent="1" style="text;whiteSpace=wrap;html=1;rotation=-90;" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" vertex="1">
-          <mxGeometry height="40" width="100" x="-442.99872981077806" y="370.00050807568874" as="geometry" />
+          <mxGeometry height="40" width="100" x="-442.99872981077806" y="380.00050807568874" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
