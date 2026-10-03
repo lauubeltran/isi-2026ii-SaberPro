@@ -35,7 +35,7 @@
             <mxPoint x="-355" y="287.5" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="ED47z1QFiylm1V0iUIqD-20" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Coordinador&amp;nbsp;" vertex="1">
+        <mxCell id="ED47z1QFiylm1V0iUIqD-20" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Coordinador&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="115" width="60" x="-200" y="300" as="geometry" />
         </mxCell>
         <mxCell id="ED47z1QFiylm1V0iUIqD-22" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Reportar pago" vertex="1">
