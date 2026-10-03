@@ -1,6 +1,6 @@
 <mxfile host="Electron">
   <diagram name="Página-1" id="BCmALFY_hSH_LKO9dTjh">
-    <mxGraphModel dx="2096" dy="722" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1857" dy="626" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -8,7 +8,7 @@
           <mxGeometry height="6.664623166225283" width="6.675056817307937" x="-101.47435909222213" y="85.3933340297483" as="geometry" />
         </mxCell>
         <mxCell id="Zn4KV57l6wXViuU_yeFq-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
-          <mxGeometry height="280" width="332" x="-579" y="110" as="geometry" />
+          <mxGeometry height="350" width="332" x="-579" y="110" as="geometry" />
         </mxCell>
         <mxCell id="Zn4KV57l6wXViuU_yeFq-18" edge="1" parent="1" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" target="Zn4KV57l6wXViuU_yeFq-17">
           <mxGeometry relative="1" as="geometry">
@@ -22,7 +22,7 @@
           <mxGeometry height="115" width="60" x="-680" y="247.5" as="geometry" />
         </mxCell>
         <mxCell id="Zn4KV57l6wXViuU_yeFq-11" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Evalúar a los estudiantes" vertex="1">
-          <mxGeometry height="60" width="110" x="-468" y="240" as="geometry" />
+          <mxGeometry height="60" width="110" x="-468" y="260" as="geometry" />
         </mxCell>
         <mxCell id="Zn4KV57l6wXViuU_yeFq-12" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;endFill=0;" target="Zn4KV57l6wXViuU_yeFq-11" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
@@ -30,8 +30,8 @@
             <mxPoint x="-370" y="330" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="Zn4KV57l6wXViuU_yeFq-17" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Envíar registros de los estudiantes al director del programa&lt;div&gt;&lt;br/&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="60" width="182" x="-504" y="160" as="geometry" />
+        <mxCell id="Zn4KV57l6wXViuU_yeFq-17" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Envíar registros de los estudiantes" vertex="1">
+          <mxGeometry height="60" width="110" x="-468" y="160" as="geometry" />
         </mxCell>
         <mxCell id="Zn4KV57l6wXViuU_yeFq-19" edge="1" parent="1" source="Zn4KV57l6wXViuU_yeFq-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;innerLoopWaypoints=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="Zn4KV57l6wXViuU_yeFq-7">
           <mxGeometry relative="1" as="geometry" />
@@ -43,7 +43,7 @@
           <mxGeometry height="30" width="210" x="-518" y="120.00000000000003" as="geometry" />
         </mxCell>
         <mxCell id="nSyZG5NL6eq4MJgy1CU5-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Enviar el listado de estudiantes a coordinación" vertex="1">
-          <mxGeometry height="70" width="110" x="-468" y="310" as="geometry" />
+          <mxGeometry height="60" width="166" x="-486" y="360" as="geometry" />
         </mxCell>
         <mxCell id="nSyZG5NL6eq4MJgy1CU5-3" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;endFill=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="nSyZG5NL6eq4MJgy1CU5-2" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
