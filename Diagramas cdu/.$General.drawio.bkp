@@ -1,6 +1,6 @@
 <mxfile host="Electron">
   <diagram name="Página-1" id="MCQO892_dYgctkp20-of">
-    <mxGraphModel dx="1930" dy="657" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2412" dy="963" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -207,33 +207,6 @@
         </mxCell>
         <mxCell id="LadX3ik3WdCmJ01L012D-68" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=90;" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" vertex="1">
           <mxGeometry height="30" width="122.5" x="-306.25" y="608.75" as="geometry" />
-        </mxCell>
-        <mxCell id="JqMvwez9fmumuWXpYZDS-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Evalúar a los estudiantes" vertex="1">
-          <mxGeometry height="60" width="110" x="-172" y="420" as="geometry" />
-        </mxCell>
-        <mxCell id="JqMvwez9fmumuWXpYZDS-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Envíar registros de los estudiantes" vertex="1">
-          <mxGeometry height="60" width="110" x="-172" y="320" as="geometry" />
-        </mxCell>
-        <mxCell id="JqMvwez9fmumuWXpYZDS-3" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;innerLoopWaypoints=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="-117" y="620" as="sourcePoint" />
-            <mxPoint x="-117" y="620" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="JqMvwez9fmumuWXpYZDS-4" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;innerLoopWaypoints=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="-117" y="620" as="sourcePoint" />
-            <mxPoint x="-117" y="620" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="JqMvwez9fmumuWXpYZDS-5" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Enviar el listado de estudiantes a coordinación" vertex="1">
-          <mxGeometry height="60" width="166" x="-190" y="520" as="geometry" />
-        </mxCell>
-        <mxCell id="JqMvwez9fmumuWXpYZDS-6" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;innerLoopWaypoints=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="-117" y="620" as="sourcePoint" />
-            <mxPoint x="-117" y="620" as="targetPoint" />
-          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
