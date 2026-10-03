@@ -1,6 +1,6 @@
 <mxfile host="Electron">
   <diagram name="Página-1" id="Z_SCMqDICXVzYaU0mYWq">
-    <mxGraphModel dx="1518" dy="832" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1640" dy="971" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -65,7 +65,7 @@
         <mxCell id="lB601B7G8uzOpbuFg9dm-6" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Coordinacion de&amp;nbsp;&lt;div&gt;pruebas&lt;/div&gt;" vertex="1">
           <mxGeometry height="115" width="60" x="230" y="40.879999999999995" as="geometry" />
         </mxCell>
-        <mxCell id="lB601B7G8uzOpbuFg9dm-7" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Programa la&amp;nbsp;&lt;div&gt;actividad (simulacro o taller)&lt;/div&gt;" vertex="1">
+        <mxCell id="lB601B7G8uzOpbuFg9dm-7" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Programar la&amp;nbsp;&lt;div&gt;actividad (simulacro o taller)&lt;/div&gt;" vertex="1">
           <mxGeometry height="70" width="190" x="-40" y="70.22" as="geometry" />
         </mxCell>
         <mxCell id="lB601B7G8uzOpbuFg9dm-8" edge="1" parent="1" source="lB601B7G8uzOpbuFg9dm-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;innerLoopWaypoints=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="lB601B7G8uzOpbuFg9dm-4">
@@ -86,7 +86,7 @@
         <mxCell id="lB601B7G8uzOpbuFg9dm-15" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Sistema" vertex="1">
           <mxGeometry height="115" width="60" x="-180" y="200" as="geometry" />
         </mxCell>
-        <mxCell id="lB601B7G8uzOpbuFg9dm-16" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Valida y guarda la actividad." vertex="1">
+        <mxCell id="lB601B7G8uzOpbuFg9dm-16" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Validar y guardar la actividad." vertex="1">
           <mxGeometry height="70" width="130" x="-10" y="197.72" as="geometry" />
         </mxCell>
         <mxCell id="lB601B7G8uzOpbuFg9dm-18" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="PREU" vertex="1">
@@ -101,7 +101,7 @@
         <mxCell id="lB601B7G8uzOpbuFg9dm-21" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Coordinacion de&amp;nbsp;&lt;div&gt;pruebas&lt;/div&gt;" vertex="1">
           <mxGeometry height="115" width="60" x="230" y="442.94000000000005" as="geometry" />
         </mxCell>
-        <mxCell id="lB601B7G8uzOpbuFg9dm-22" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Buscra y publicar la actividad" vertex="1">
+        <mxCell id="lB601B7G8uzOpbuFg9dm-22" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Buscar y publicar la actividad" vertex="1">
           <mxGeometry height="70" width="190" x="-40" y="472.28" as="geometry" />
         </mxCell>
         <mxCell id="lB601B7G8uzOpbuFg9dm-23" edge="1" parent="1" source="lB601B7G8uzOpbuFg9dm-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;innerLoopWaypoints=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="lB601B7G8uzOpbuFg9dm-19">
@@ -143,7 +143,7 @@
         <mxCell id="lB601B7G8uzOpbuFg9dm-35" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Estudiante" vertex="1">
           <mxGeometry height="115" width="60" x="230" y="932.5" as="geometry" />
         </mxCell>
-        <mxCell id="lB601B7G8uzOpbuFg9dm-36" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Ingresa al sistema" vertex="1">
+        <mxCell id="lB601B7G8uzOpbuFg9dm-36" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Ingresar al sistema" vertex="1">
           <mxGeometry height="70" width="190" x="-40" y="821.64" as="geometry" />
         </mxCell>
         <mxCell id="lB601B7G8uzOpbuFg9dm-37" edge="1" parent="1" source="lB601B7G8uzOpbuFg9dm-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;innerLoopWaypoints=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="lB601B7G8uzOpbuFg9dm-33">
@@ -164,13 +164,13 @@
         <mxCell id="lB601B7G8uzOpbuFg9dm-43" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Sistema" vertex="1">
           <mxGeometry height="115" width="60" x="-180" y="932.5" as="geometry" />
         </mxCell>
-        <mxCell id="lB601B7G8uzOpbuFg9dm-44" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Valida al estudiante y muestra las actividades disponibles" vertex="1">
+        <mxCell id="lB601B7G8uzOpbuFg9dm-44" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Validar al estudiante y muestrar las actividades disponibles" vertex="1">
           <mxGeometry height="70" width="200" x="-45" y="907.3000000000001" as="geometry" />
         </mxCell>
-        <mxCell id="lB601B7G8uzOpbuFg9dm-45" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Selecciona la activivdad&amp;nbsp;" vertex="1">
+        <mxCell id="lB601B7G8uzOpbuFg9dm-45" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Seleccionar la activivdad&amp;nbsp;" vertex="1">
           <mxGeometry height="70" width="130" x="-10" y="996.42" as="geometry" />
         </mxCell>
-        <mxCell id="lB601B7G8uzOpbuFg9dm-46" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Muestra la informacion de la actividad" vertex="1">
+        <mxCell id="lB601B7G8uzOpbuFg9dm-46" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Muestrar la informacion de la actividad" vertex="1">
           <mxGeometry height="70" width="130" x="-10" y="1088.36" as="geometry" />
         </mxCell>
         <mxCell id="lB601B7G8uzOpbuFg9dm-53" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
@@ -182,7 +182,7 @@
         <mxCell id="lB601B7G8uzOpbuFg9dm-56" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Estudiante" vertex="1">
           <mxGeometry height="115" width="60" x="790" y="111.47000000000006" as="geometry" />
         </mxCell>
-        <mxCell id="lB601B7G8uzOpbuFg9dm-57" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Se inscribe en una actividad" vertex="1">
+        <mxCell id="lB601B7G8uzOpbuFg9dm-57" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Inscribir una actividad" vertex="1">
           <mxGeometry height="70" width="190" x="520" y="51.639999999999986" as="geometry" />
         </mxCell>
         <mxCell id="lB601B7G8uzOpbuFg9dm-58" edge="1" parent="1" source="lB601B7G8uzOpbuFg9dm-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;innerLoopWaypoints=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="lB601B7G8uzOpbuFg9dm-53">
@@ -203,10 +203,10 @@
         <mxCell id="lB601B7G8uzOpbuFg9dm-63" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Sistema" vertex="1">
           <mxGeometry height="115" width="60" x="380" y="111.47000000000006" as="geometry" />
         </mxCell>
-        <mxCell id="lB601B7G8uzOpbuFg9dm-65" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Registra la inscripcion" vertex="1">
+        <mxCell id="lB601B7G8uzOpbuFg9dm-65" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Registrar la inscripcion" vertex="1">
           <mxGeometry height="70" width="130" x="550" y="226.4199999999999" as="geometry" />
         </mxCell>
-        <mxCell id="lB601B7G8uzOpbuFg9dm-67" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Valida al estudiante" vertex="1">
+        <mxCell id="lB601B7G8uzOpbuFg9dm-67" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Validar al estudiante" vertex="1">
           <mxGeometry height="70" width="130" x="550" y="140.22" as="geometry" />
         </mxCell>
         <mxCell id="lB601B7G8uzOpbuFg9dm-71" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
@@ -218,7 +218,7 @@
         <mxCell id="lB601B7G8uzOpbuFg9dm-73" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Coordinación de&lt;div&gt;Pruebas/PREU&lt;/div&gt;" vertex="1">
           <mxGeometry height="115" width="60" x="790" y="403.39000000000004" as="geometry" />
         </mxCell>
-        <mxCell id="lB601B7G8uzOpbuFg9dm-74" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Busca una actividad" vertex="1">
+        <mxCell id="lB601B7G8uzOpbuFg9dm-74" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Buscar una actividad" vertex="1">
           <mxGeometry height="70" width="190" x="520" y="393.41999999999996" as="geometry" />
         </mxCell>
         <mxCell id="lB601B7G8uzOpbuFg9dm-75" edge="1" parent="1" source="lB601B7G8uzOpbuFg9dm-71" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;innerLoopWaypoints=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="lB601B7G8uzOpbuFg9dm-71">
@@ -236,7 +236,7 @@
         <mxCell id="lB601B7G8uzOpbuFg9dm-80" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Sistema" vertex="1">
           <mxGeometry height="115" width="60" x="380" y="403.39" as="geometry" />
         </mxCell>
-        <mxCell id="lB601B7G8uzOpbuFg9dm-82" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Muestra las inscripciones realizadas" vertex="1">
+        <mxCell id="lB601B7G8uzOpbuFg9dm-82" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Muestrar las inscripciones realizadas" vertex="1">
           <mxGeometry height="70" width="160" x="535" y="482" as="geometry" />
         </mxCell>
       </root>
