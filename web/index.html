@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#174b3a">
+  <title>Registro Saber Pro | Ingeniería de Sistemas</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Inicio, Saber Pro">
+      <span class="brand-mark" aria-hidden="true">SP</span>
+      <span class="brand-copy"><strong>Saber Pro</strong><small>Gestión académica</small></span>
+    </a>
+    <div class="topbar-meta"><span class="online-dot"></span> Ingeniería de Sistemas</div>
+  </header>
+
+  <main class="page-shell">
+    <div class="page-heading">
+      <div>
+        <p class="eyebrow">REGISTRO DE ESTUDIANTES</p>
+        <h1>Preparar evaluación</h1>
+        <p class="intro">Carga el listado de estudiantes próximos a finalizar el programa.</p>
+      </div>
+      <a class="text-link" href="/ejemplo.txt" download>Descargar archivo de ejemplo <span aria-hidden="true">↗</span></a>
+    </div>
+
+    <section class="summary" aria-label="Resumen de registros">
+      <div class="summary-block">
+        <div class="summary-label">ESTUDIANTES REGISTRADOS</div>
+        <div class="summary-value" id="total-count">0</div>
+        <div class="summary-foot"><span class="status-dot"></span> Pendientes de evaluación</div>
+      </div>
+      <div class="summary-divider"></div>
+      <div class="summary-block">
+        <div class="summary-label">PERIODO ACTIVO</div>
+        <div class="summary-period" id="summary-period">2026-2</div>
+        <div class="summary-foot">Ingeniería de Sistemas</div>
+      </div>
+      <div class="summary-stamp" aria-hidden="true">S<br><span>P</span></div>
+    </section>
+
+    <div class="workspace">
+      <section class="import-panel" aria-labelledby="import-title">
+        <div class="section-heading">
+          <div class="step-number">01</div>
+          <div><h2 id="import-title">Importar listado</h2><p>Selecciona el periodo y el archivo institucional.</p></div>
+        </div>
+        <form id="registration-form">
+          <div class="form-row">
+            <label>Programa
+              <select name="program" required>
+                <option value="Ingeniería de Sistemas">Ingeniería de Sistemas</option>
+              </select>
+            </label>
+            <label>Periodo académico
+              <select name="period" id="period-select" required>
+                <option value="2026-2">2026-2</option>
+                <option value="2027-1">2027-1</option>
+                <option value="2027-2">2027-2</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="file-label" for="student-file">Archivo de estudiantes</label>
+          <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Seleccionar archivo de estudiantes">
+            <input id="student-file" name="file" type="file" accept=".txt,text/plain" required>
+            <span class="file-icon" aria-hidden="true">↑</span>
+            <span class="drop-title" id="drop-title">Arrastra el archivo aquí</span>
+            <span class="drop-hint">o <span class="browse-link">busca en tu equipo</span> · .txt</span>
+          </div>
+          <div class="file-meta"><span>Formato tabulado, UTF-8</span><span>Máximo 2 MB</span></div>
+          <div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
+          <button class="submit-button" id="submit-button" type="submit"><span>Validar y registrar</span><span aria-hidden="true">→</span></button>
+        </form>
+      </section>
+
+      <aside class="requirements" aria-label="Columnas requeridas">
+        <div class="requirements-kicker">ANTES DE CARGAR</div>
+        <h2>Columnas requeridas</h2>
+        <p>El archivo debe incluir estos campos en la primera fila y en este orden.</p>
+        <ol class="field-list">
+          <li><span>01</span><code>codigo</code></li>
+          <li><span>02</span><code>nombre</code></li>
+          <li><span>03</span><code>correo</code></li>
+          <li><span>04</span><code>telefono</code></li>
+          <li><span>05</span><code>cohorte</code></li>
+          <li><span>06</span><code>pensum</code></li>
+          <li><span>07</span><code>creditos_aprobados</code></li>
+        </ol>
+        <div class="requirements-note"><span aria-hidden="true">i</span> Se rechaza el archivo completo si hay errores o códigos repetidos.</div>
+      </aside>
+    </div>
+
+    <section class="records-section" aria-labelledby="records-title">
+      <div class="records-heading">
+        <div><p class="eyebrow">HISTORIAL</p><h2 id="records-title">Estudiantes registrados</h2></div>
+        <label class="search-box"><span aria-hidden="true">⌕</span><input id="search-input" type="search" placeholder="Buscar estudiante" aria-label="Buscar estudiante"></label>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Estudiante</th><th>Código</th><th>Correo</th><th>Periodo</th><th>Estado</th></tr></thead>
+          <tbody id="records-body"><tr class="empty-row"><td colspan="5">Aún no hay estudiantes registrados.</td></tr></tbody>
+        </table>
+      </div>
+      <div class="table-foot"><span id="table-count">0 estudiantes</span><span>Los registros se guardan en este equipo</span></div>
+    </section>
+  </main>
+  <footer class="site-footer"><span>Sistema de gestión de pruebas Saber Pro</span><span>Oficina de registro y control académico</span></footer>
+</body>
+</html>
