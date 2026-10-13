@@ -20,6 +20,7 @@ public class VentanaPrincipal extends JFrame {
     private VentanaListadoHabilitados listadoHabilitados;
     private JPanel itemEvaluacion;
     private JPanel itemHabilitados;
+    private JPanel itemPreinscripcion;
     
     private List<Estudiante> estudiantes;
     private final List<Estudiante> visibles = new ArrayList<>();
@@ -65,6 +66,7 @@ panelCentral.add(
 
 listadoHabilitados = new VentanaListadoHabilitados(estudiantes);
 panelCentral.add(listadoHabilitados, "habilitados");
+panelCentral.add(new VentanaPreinscripcionICFES(rutaCsv, "Director del programa"), "preinscripcion");
 
 add(panelCentral, BorderLayout.CENTER);
 
@@ -126,9 +128,15 @@ p.add(itemEvaluacion);
         });
 
 p.add(itemHabilitados);
-        p.add(Box.createVerticalStrut(4));
-        p.add(itemMenu("Inscripción ICFES",
-                new Tema.Pildora("Pronto", Tema.BORDE, Tema.TEXTO_SUAVE), false));
+        p.add(Box.createVerticalStrut(4));        itemPreinscripcion = itemMenu(
+                "Pre-inscripción ICFES",
+                null,
+                false,
+                () -> {
+                    activarMenu(itemPreinscripcion);
+                    cardLayout.show(panelCentral, "preinscripcion");
+                });
+        p.add(itemPreinscripcion);
         p.add(Box.createVerticalGlue());
 
         // Tarjeta del Director
@@ -231,6 +239,10 @@ private void activarMenu(JPanel seleccionado) {
 
     actualizarItem(itemHabilitados,
             seleccionado == itemHabilitados);
+    
+    
+    actualizarItem(itemPreinscripcion,
+            seleccionado == itemPreinscripcion);
 }
 private void actualizarItem(
         JPanel panel,
