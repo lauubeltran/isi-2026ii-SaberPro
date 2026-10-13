@@ -15,6 +15,12 @@ public class VentanaPrincipal extends JFrame {
     private final String rutaCsv;
     private final RepositorioEstudiantes repositorio;
     private final VerificadorRequisitos verificador = new VerificadorRequisitos();
+    private CardLayout cardLayout;
+    private JPanel panelCentral;
+    private VentanaListadoHabilitados listadoHabilitados;
+    private JPanel itemEvaluacion;
+    private JPanel itemHabilitados;
+    
     private List<Estudiante> estudiantes;
     private final List<Estudiante> visibles = new ArrayList<>();
     private String filtro = "TODOS";
@@ -48,7 +54,19 @@ public class VentanaPrincipal extends JFrame {
         getContentPane().setBackground(Tema.FONDO);
         setLayout(new BorderLayout());
         add(crearSidebar(), BorderLayout.WEST);
-        add(crearContenido(), BorderLayout.CENTER);
+
+cardLayout = new CardLayout();
+
+panelCentral = new JPanel(cardLayout);
+
+panelCentral.add(
+        crearContenido(),
+        "evaluacion");
+
+listadoHabilitados = new VentanaListadoHabilitados(estudiantes);
+panelCentral.add(listadoHabilitados, "habilitados");
+
+add(panelCentral, BorderLayout.CENTER);
 
         refrescarTabla();
         setSize(1280, 820);
@@ -87,10 +105,27 @@ public class VentanaPrincipal extends JFrame {
         p.add(Box.createVerticalStrut(10));
         p.add(itemMenu("Inicio", null, false));
         p.add(Box.createVerticalStrut(4));
-        p.add(itemMenu("Evaluación de estudiantes", lblBadge, true));
+   itemEvaluacion = itemMenu(
+        "Evaluación de estudiantes",
+        lblBadge,
+        true,
+        () -> {
+            activarMenu(itemEvaluacion);
+            cardLayout.show(panelCentral, "evaluacion");
+        });
+
+p.add(itemEvaluacion);
         p.add(Box.createVerticalStrut(4));
-        p.add(itemMenu("Listado de admitidos",
-                new Tema.Pildora("Pronto", Tema.BORDE, Tema.TEXTO_SUAVE), false));
+       itemHabilitados = itemMenu(
+        "Listado de habilitados",
+        null,
+        false,
+        () -> {
+            activarMenu(itemHabilitados);
+            cardLayout.show(panelCentral, "habilitados");
+        });
+
+p.add(itemHabilitados);
         p.add(Box.createVerticalStrut(4));
         p.add(itemMenu("Inscripción ICFES",
                 new Tema.Pildora("Pronto", Tema.BORDE, Tema.TEXTO_SUAVE), false));
@@ -152,6 +187,87 @@ public class VentanaPrincipal extends JFrame {
         }
         return fila;
     }
+
+    
+private JPanel itemMenu(
+        String texto,
+        JComponent extra,
+        boolean activo,
+        Runnable accion) {
+
+    JPanel fila = itemMenu(texto, extra, activo);
+
+    fila.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+    MouseAdapter listener = new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent ev) {
+            accion.run();
+        }
+    };
+
+    agregarClickRecursivo(fila, listener);
+    
+    return fila;
+}
+
+private void agregarClickRecursivo(
+        Component componente,
+        MouseAdapter listener) {
+
+    componente.addMouseListener(listener);
+
+    if (componente instanceof Container) {
+        for (Component hijo :
+                ((Container) componente).getComponents()) {
+            agregarClickRecursivo(hijo, listener);
+        }
+    }
+}
+private void activarMenu(JPanel seleccionado) {
+
+    actualizarItem(itemEvaluacion,
+            seleccionado == itemEvaluacion);
+
+    actualizarItem(itemHabilitados,
+            seleccionado == itemHabilitados);
+}
+private void actualizarItem(
+        JPanel panel,
+        boolean activo) {
+
+    if (panel == null) {
+        return;
+    }
+
+    if (panel instanceof Tema.Redondeado r) {
+
+        r.setColor(
+                activo
+                        ? Tema.PANEL_CLARO
+                        : new Color(0, 0, 0, 0));
+    }
+
+    for (Component c : panel.getComponents()) {
+
+        if (c instanceof JLabel l) {
+
+            l.setFont(
+                    Tema.fuente(
+                            activo
+                                    ? Font.BOLD
+                                    : Font.PLAIN,
+                            13f));
+
+            l.setForeground(
+                    activo
+                            ? Tema.TEXTO
+                            : Tema.TEXTO_SUAVE);
+        }
+    }
+
+    panel.repaint();
+}
 
     // -------------------------------------------------------------- Contenido
     private JPanel crearContenido() {
@@ -363,6 +479,7 @@ public class VentanaPrincipal extends JFrame {
         });
     }
 
+
     // ------------------------------------------------------------------ Lógica
     private void abrirRegistro() {
     VentanaRegistroEstudiantes ventana =
@@ -482,6 +599,9 @@ public class VentanaPrincipal extends JFrame {
         if (seleccionado != null) {
             int i = visibles.indexOf(seleccionado);
             if (i >= 0) tabla.setRowSelectionInterval(i, i);
+        }
+                if (listadoHabilitados != null) {
+            listadoHabilitados.actualizar(estudiantes);
         }
     }
 
