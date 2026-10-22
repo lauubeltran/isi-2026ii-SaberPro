@@ -1,6 +1,8 @@
 # isi-2026ii-SaberPro
 
-Prototipo del primer requerimiento del sistema de gestión de pruebas Saber Pro: registrar estudiantes próximos a finalizar Ingeniería de Sistemas.
+Prototipo de los primeros 4 requerimientos del sistema de gestión de pruebas Saber Pro: registrar estudiantes próximos a finalizar Ingeniería de Sistemas.
+ - Documentación: https://docs.google.com/document/d/1_SLuhn74IgQ65K07TWg-gVWeVPsWvr_UV6OEZQUFuTs/edit?usp=sharing
+
 
 ## Requisitos
 
