@@ -17,8 +17,14 @@ public class VentanaListadoHabilitados extends JPanel {
     private final DefaultTableModel modelo;
     private final JLabel cantidad = new JLabel();
     private final JLabel lblContador = new JLabel("0");
+    private final String rutaCsv;   // para registrar el envío al coordinador (null = sin envío)
 
     public VentanaListadoHabilitados(List<Estudiante> estudiantes) {
+        this(estudiantes, null);
+    }
+
+    public VentanaListadoHabilitados(List<Estudiante> estudiantes, String rutaCsv) {
+        this.rutaCsv = rutaCsv;
 
         setLayout(new BorderLayout(0, 16));
         setBackground(Tema.FONDO);
@@ -116,10 +122,22 @@ public class VentanaListadoHabilitados extends JPanel {
                 "Guardar listado para enviar", Tema.ACENTO, Tema.SOBRE_ACENTO);
         btnGuardar.addActionListener(ev -> guardarListado());
 
+        JButton btnEnviar = Tema.boton(
+                "Enviar al coordinador", Tema.ACENTO, Tema.SOBRE_ACENTO);
+        btnEnviar.addActionListener(ev -> enviarAlCoordinador());
+        btnEnviar.setVisible(rutaCsv != null);
+
+        JPanel botones = new JPanel();
+        botones.setLayout(new BoxLayout(botones, BoxLayout.X_AXIS));
+        botones.setOpaque(false);
+        botones.add(btnGuardar);
+        botones.add(Box.createHorizontalStrut(8));
+        botones.add(btnEnviar);
+
         JPanel pie = new JPanel(new BorderLayout());
         pie.setOpaque(false);
         pie.add(cantidad, BorderLayout.WEST);
-        pie.add(btnGuardar, BorderLayout.EAST);
+        pie.add(botones, BorderLayout.EAST);
         add(pie, BorderLayout.SOUTH);
 
         actualizar(estudiantes);
@@ -145,7 +163,50 @@ public class VentanaListadoHabilitados extends JPanel {
         }
 
         lblContador.setText(String.valueOf(habilitados.size()));
-        cantidad.setText("Total de estudiantes habilitados: " + habilitados.size());
+        actualizarTextoPie();
+    }
+
+    /** «Total de estudiantes habilitados: N» y, si ya se envió, la fecha del último envío. */
+    private void actualizarTextoPie() {
+        String texto = "Total de estudiantes habilitados: " + habilitados.size();
+        if (rutaCsv != null) {
+            try {
+                ListadoEnviado.Listado enviado = ListadoEnviado.leer(rutaCsv);
+                if (enviado != null) {
+                    texto += "  ·  Último envío al coordinador: "
+                            + ListadoEnviado.fechaLegible(enviado.fechaEnvio());
+                }
+            } catch (IOException | RuntimeException ex) {
+                // Si no se puede leer, solo se omite la fecha.
+            }
+        }
+        cantidad.setText(texto);
+    }
+
+    /** Envía el listado actual de habilitados al coordinador (reemplaza el envío anterior). */
+    private void enviarAlCoordinador() {
+        if (rutaCsv == null) return;
+        if (habilitados.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "No hay estudiantes habilitados para enviar.",
+                    "Enviar al coordinador", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        int n = habilitados.size();
+        int op = JOptionPane.showConfirmDialog(this,
+                "¿Enviar al coordinador el listado de " + n
+                        + (n == 1 ? " estudiante habilitado?" : " estudiantes habilitados?"),
+                "Enviar al coordinador", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (op != JOptionPane.YES_OPTION) return;
+
+        try {
+            ListadoEnviado.guardar(rutaCsv, habilitados);
+            actualizarTextoPie();
+            JOptionPane.showMessageDialog(this, "Listado enviado al coordinador.");
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void guardarListado() {

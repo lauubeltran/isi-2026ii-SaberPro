@@ -20,7 +20,6 @@ public class VentanaPrincipal extends JFrame {
     private VentanaListadoHabilitados listadoHabilitados;
     private JPanel itemEvaluacion;
     private JPanel itemHabilitados;
-    private JPanel itemPreinscripcion;
     
     private List<Estudiante> estudiantes;
     private final List<Estudiante> visibles = new ArrayList<>();
@@ -39,7 +38,6 @@ public class VentanaPrincipal extends JFrame {
 
     public VentanaPrincipal(String rutaCsv) {
         super("Saber Pro · Panel del Director del programa");
-        System.out.println("EJECUTANDO VENTANAPRINCIPAL MODIFICADA");
         this.rutaCsv = rutaCsv;
         repositorio = new RepositorioEstudiantes(rutaCsv);
         try {
@@ -64,9 +62,8 @@ panelCentral.add(
         crearContenido(),
         "evaluacion");
 
-listadoHabilitados = new VentanaListadoHabilitados(estudiantes);
+listadoHabilitados = new VentanaListadoHabilitados(estudiantes, rutaCsv);
 panelCentral.add(listadoHabilitados, "habilitados");
-panelCentral.add(new VentanaPreinscripcionICFES(rutaCsv, "Director del programa"), "preinscripcion");
 
 add(panelCentral, BorderLayout.CENTER);
 
@@ -78,13 +75,17 @@ add(panelCentral, BorderLayout.CENTER);
 
     // ---------------------------------------------------------------- Sidebar
     private JPanel crearSidebar() {
-        JPanel p = new JPanel();
-        p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
-        p.setBackground(Tema.PANEL);
-        p.setBorder(BorderFactory.createCompoundBorder(
+        // «lado» es la barra completa; «p» es el menú (arriba) y el usuario va abajo (SOUTH).
+        JPanel lado = new JPanel(new BorderLayout());
+        lado.setBackground(Tema.PANEL);
+        lado.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createMatteBorder(0, 0, 0, 1, Tema.BORDE),
                 BorderFactory.createEmptyBorder(26, 18, 18, 18)));
-        p.setPreferredSize(new Dimension(280, 0));
+        lado.setPreferredSize(new Dimension(280, 0));
+
+        JPanel p = new JPanel();
+        p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+        p.setOpaque(false);
 
         JLabel logo = new JLabel("Saber Pro");
         logo.setFont(new Font("Segoe UI", Font.BOLD, 26));
@@ -128,16 +129,9 @@ p.add(itemEvaluacion);
         });
 
 p.add(itemHabilitados);
-        p.add(Box.createVerticalStrut(4));        itemPreinscripcion = itemMenu(
-                "Pre-inscripción ICFES",
-                null,
-                false,
-                () -> {
-                    activarMenu(itemPreinscripcion);
-                    cardLayout.show(panelCentral, "preinscripcion");
-                });
-        p.add(itemPreinscripcion);
-        p.add(Box.createVerticalGlue());
+        p.add(Box.createVerticalStrut(4));
+        p.add(itemMenu("Inscripción ICFES",
+                new Tema.Pildora("Pronto", Tema.BORDE, Tema.TEXTO_SUAVE), false));
 
         // Tarjeta del Director
         JLabel quien = new JLabel("Director del programa");
@@ -165,15 +159,21 @@ p.add(itemHabilitados);
         usuario.add(textos, BorderLayout.CENTER);
         usuario.setAlignmentX(Component.LEFT_ALIGNMENT);
         usuario.setMaximumSize(new Dimension(Integer.MAX_VALUE, 44));
-        p.add(usuario);
-        p.add(Box.createVerticalStrut(14));
+        JPanel pie = new JPanel();
+        pie.setLayout(new BoxLayout(pie, BoxLayout.Y_AXIS));
+        pie.setOpaque(false);
+        pie.add(usuario);
+        pie.add(Box.createVerticalStrut(14));
 
         JButton salir = Tema.boton("Cerrar sesión", Tema.PANEL_CLARO, Tema.TEXTO_SUAVE);
         salir.setAlignmentX(Component.LEFT_ALIGNMENT);
         salir.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
         salir.addActionListener(ev -> cerrarSesion());
-        p.add(salir);
-        return p;
+        pie.add(salir);
+
+        lado.add(p, BorderLayout.CENTER);
+        lado.add(pie, BorderLayout.SOUTH);
+        return lado;
     }
 
     private JPanel itemMenu(String texto, JComponent extra, boolean activo) {
@@ -239,10 +239,6 @@ private void activarMenu(JPanel seleccionado) {
 
     actualizarItem(itemHabilitados,
             seleccionado == itemHabilitados);
-    
-    
-    actualizarItem(itemPreinscripcion,
-            seleccionado == itemPreinscripcion);
 }
 private void actualizarItem(
         JPanel panel,
@@ -542,15 +538,42 @@ private void actualizarItem(
 
     private void reiniciar() {
         int op = JOptionPane.showConfirmDialog(this,
-                "¿Volver todos los estudiantes a «Sin evaluar» y borrar las observaciones?",
+                "¿Reiniciar toda la demo?\n\n"
+                        + "• Los estudiantes vuelven a «Sin evaluar» y se borran las observaciones.\n"
+                        + "• Se borra el listado enviado al coordinador, los pre-registros y las notificaciones.",
                 "Reiniciar demo", JOptionPane.YES_NO_OPTION);
         if (op != JOptionPane.YES_OPTION) return;
         for (Estudiante e : estudiantes) {
             e.setCondicion(Estudiante.PENDIENTE);
             e.setObservaciones("");
         }
-        guardar();
+        if (guardar()) {
+            borrarDatosDelFlujo();
+        }
         refrescarTabla();
+    }
+
+    /** Borra lo que generan el envío al coordinador, el pre-registro y las notificaciones. */
+    private void borrarDatosDelFlujo() {
+        java.nio.file.Path carpeta = java.nio.file.Paths.get(rutaCsv).toAbsolutePath().getParent();
+        String[] archivos = {
+                "listado_enviado.csv", "listado_enviado.csv.tmp",
+                "preregistro_confirmado.csv", "notificaciones.csv",
+                "preregistro.csv"   // de una versión anterior de las pruebas
+        };
+        StringBuilder fallos = new StringBuilder();
+        for (String nombre : archivos) {
+            try {
+                java.nio.file.Files.deleteIfExists(carpeta.resolve(nombre));
+            } catch (IOException ex) {
+                fallos.append("\n• ").append(nombre).append(": ").append(ex.getMessage());
+            }
+        }
+        if (fallos.length() > 0) {
+            JOptionPane.showMessageDialog(this,
+                    "No se pudieron borrar estos archivos:" + fallos,
+                    "Reiniciar demo", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     private void cerrarSesion() {
