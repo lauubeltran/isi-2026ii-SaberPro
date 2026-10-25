@@ -35,12 +35,12 @@ import javax.swing.table.TableCellRenderer;
  *  1. El sistema muestra el listado de habilitados que envió el Director (listado_enviado.csv)
  *     y el enlace a la plataforma oficial del ICFES.
  *  2. El Coordinador carga el listado en la plataforma del ICFES (actividad externa al sistema).
- *  3. El Coordinador vuelve al sistema y confirma que el pre-registro fue realizado, indicando la fecha.
- *  4. El sistema registra la confirmación (fecha y responsable) y cambia el estado de los
+ *  3. El Coordinador vuelve al sistema y confirma el pre-registro, indicando la fecha. Puede hacerlo
+ *     para los estudiantes SELECCIONADOS en la tabla (uno o varios) o para TODOS los pendientes.
+ *  4. El sistema registra la confirmación (fecha y responsable) y cambia el estado de esos
  *     estudiantes a «pre-registrado» (preregistro_confirmado.csv).
- *  5. El sistema ejecuta «Notificar a los estudiantes»: guarda una notificación por estudiante en
- *     notificaciones.csv (codigo;correo;fecha_envio;asunto;mensaje;leida), de donde la leerá la
- *     página del estudiante.
+ *  5. El sistema notifica a esos estudiantes: guarda una notificación por estudiante en
+ *     notificaciones.csv (codigo;correo;fecha_envio;asunto;mensaje;leida).
  *
  * La campanita (arriba a la derecha) le recuerda al Coordinador lo que tiene pendiente.
  */
@@ -76,9 +76,12 @@ public class VentanaCoordinador extends JFrame {
     private final JLabel lblPorPreRegistrar = new JLabel("0");
     private final JLabel lblFechaListado = new JLabel(" ");
     private final JLabel lblTotalPie = new JLabel(" ");
+
+    // Los 3 botones del pie
     private final JButton btnPlataforma = Tema.boton("Abrir plataforma del ICFES", Tema.PANEL_CLARO, Tema.TEXTO);
-    private final JButton btnConfirmar = Tema.boton("Confirmar pre-registro", Tema.ACENTO, Tema.SOBRE_ACENTO);
-    private final JButton btnNotificar = Tema.boton("Notificar a los estudiantes", Tema.PANEL_CLARO, Tema.TEXTO);
+    private final JButton btnPreSel = Tema.boton("Pre-registrar seleccionados", Tema.PANEL_CLARO, Tema.TEXTO);
+    private final JButton btnConfirmar = Tema.boton("Pre-registrar a todos", Tema.ACENTO, Tema.SOBRE_ACENTO);
+
     private final Campana campana = new Campana();
 
     private final DefaultTableModel modelo = new DefaultTableModel(
@@ -88,6 +91,7 @@ public class VentanaCoordinador extends JFrame {
             return false;
         }
     };
+    private final JTable tabla = new JTable(modelo);
     private final CardLayout cartas = new CardLayout();
     private final JPanel centro = new JPanel(cartas);
 
@@ -118,8 +122,8 @@ public class VentanaCoordinador extends JFrame {
         });
 
         recargar();
-        setSize(1280, 820);
-        setMinimumSize(new Dimension(1050, 650));
+        setSize(1280, 840);
+        setMinimumSize(new Dimension(1050, 680));
         setLocationRelativeTo(null);
     }
 
@@ -164,7 +168,7 @@ public class VentanaCoordinador extends JFrame {
         if (!Files.exists(rutaPreRegistro)) return mapa;
         List<String> lineas = Files.readAllLines(rutaPreRegistro, StandardCharsets.UTF_8);
         if (lineas.isEmpty()) return mapa;
-        String[] cab = lineas.get(0).replace("﻿", "").split(";", -1);
+        String[] cab = lineas.get(0).replace("\uFEFF", "").split(";", -1);
         int iCodigo = indice(cab, "codigo");
         int iEstado = indice(cab, "estado");
         int iFecha = indice(cab, "fecha_preregistro");
@@ -215,23 +219,21 @@ public class VentanaCoordinador extends JFrame {
         return lista;
     }
 
-    /** Estudiantes pre-registrados (del listado recibido) que todavía no tienen su notificación. */
-    List<ListadoEnviado.Fila> porNotificar() {
+    /** Estudiantes que el coordinador tiene seleccionados en la tabla (uno o varios). */
+    private List<ListadoEnviado.Fila> seleccionados() {
         List<ListadoEnviado.Fila> lista = new ArrayList<>();
-        if (listado == null) return lista;
-        for (ListadoEnviado.Fila f : listado.filas()) {
-            if (preRegistrados.containsKey(f.codigo()) && !notificados.contains(f.codigo())) lista.add(f);
+        for (int fila : tabla.getSelectedRows()) {
+            Object v = modelo.getValueAt(tabla.convertRowIndexToModel(fila), 0);
+            if (v instanceof ListadoEnviado.Fila f) lista.add(f);
         }
         return lista;
     }
 
     /**
-     * Pasos 4 y 5 del caso de uso: registra la confirmación (fecha del pre-registro y responsable),
-     * cambia el estado de los estudiantes a «pre-registrado» y ejecuta «Notificar a los estudiantes».
-     * Devuelve cuántos estudiantes quedaron pre-registrados.
+     * Registra el pre-registro de los estudiantes indicados (fecha y responsable), cambia su estado
+     * a «pre-registrado» y los notifica. Devuelve cuántos estudiantes quedaron pre-registrados.
      */
-    int confirmarPreRegistro(LocalDate fechaPreRegistro) throws IOException {
-        List<ListadoEnviado.Fila> lista = porPreRegistrar();
+    int confirmarPreRegistro(LocalDate fechaPreRegistro, List<ListadoEnviado.Fila> lista) throws IOException {
         if (lista.isEmpty()) return 0;
 
         String ahora = LocalDateTime.now().format(FMT);
@@ -243,22 +245,17 @@ public class VentanaCoordinador extends JFrame {
         preRegistrados = nuevo;
 
         try {
-            notificarPendientes();
+            notificarPreRegistro(lista);
         } catch (IOException ex) {
             throw new IOException("El pre-registro quedó guardado, pero no se pudieron registrar las "
-                    + "notificaciones. Usa «Notificar a los estudiantes» para reintentarlo.\n"
-                    + ex.getMessage(), ex);
+                    + "notificaciones.\n" + ex.getMessage(), ex);
         }
         return lista.size();
     }
 
-    /**
-     * Caso de uso «Notificar a los estudiantes»: registra la notificación de cada estudiante
-     * pre-registrado que todavía no la tiene. Devuelve cuántas se registraron.
-     */
-    int notificarPendientes() throws IOException {
-        List<ListadoEnviado.Fila> pendientes = porNotificar();
-        if (pendientes.isEmpty()) return 0;
+    /** Guarda en notificaciones.csv el aviso de pre-registro de cada estudiante indicado. */
+    private int notificarPreRegistro(List<ListadoEnviado.Fila> destinos) throws IOException {
+        if (destinos.isEmpty()) return 0;
 
         String ahora = LocalDateTime.now().format(FMT);
         List<String> lineas = new ArrayList<>();
@@ -266,14 +263,14 @@ public class VentanaCoordinador extends JFrame {
             lineas.addAll(Files.readAllLines(rutaNotificaciones, StandardCharsets.UTF_8));
         }
         if (lineas.isEmpty()) lineas.add(CABECERA_NOTIFICACIONES);
-        for (ListadoEnviado.Fila f : pendientes) {
+        for (ListadoEnviado.Fila f : destinos) {
             lineas.add(String.join(";", limpiar(f.codigo()), limpiar(f.correo()), ahora, ASUNTO,
                     limpiar(mensaje(f, preRegistrados.get(f.codigo()))), "false"));
         }
         Files.createDirectories(rutaNotificaciones.getParent());
         Files.write(rutaNotificaciones, lineas, StandardCharsets.UTF_8);
-        notificados.addAll(pendientes.stream().map(ListadoEnviado.Fila::codigo).toList());
-        return pendientes.size();
+        notificados.addAll(destinos.stream().map(ListadoEnviado.Fila::codigo).toList());
+        return destinos.size();
     }
 
     private static String mensaje(ListadoEnviado.Fila f, Confirmacion c) {
@@ -291,20 +288,12 @@ public class VentanaCoordinador extends JFrame {
         List<ListadoEnviado.Fila> por = porPreRegistrar();
         if (!por.isEmpty()) {
             lista.add(new String[]{
-                    "Tienes un listado por pre-registrar",
+                    "Tienes estudiantes por pre-registrar",
                     "Recibiste el listado de " + listado.filas().size() + " habilitados el "
                             + ListadoEnviado.fechaLegible(listado.fechaEnvio()) + ". "
                             + (por.size() == 1 ? "Falta 1 estudiante" : "Faltan " + por.size() + " estudiantes")
                             + " por pre-registrar: cárgalos en el ICFES y confirma el pre-registro; "
                             + "después se notificará a los estudiantes."
-            });
-        }
-        List<ListadoEnviado.Fila> sinNotificar = porNotificar();
-        if (!sinNotificar.isEmpty()) {
-            lista.add(new String[]{
-                    "Recuerda notificar a los estudiantes",
-                    (sinNotificar.size() == 1 ? "1 estudiante pre-registrado todavía no fue notificado."
-                                              : sinNotificar.size() + " estudiantes pre-registrados todavía no fueron notificados.")
             });
         }
         return lista;
@@ -542,7 +531,6 @@ public class VentanaCoordinador extends JFrame {
     private JPanel crearCentro() {
         centro.setOpaque(false);
 
-        JTable tabla = new JTable(modelo);
         tabla.setRowHeight(58);
         tabla.setShowGrid(false);
         tabla.setIntercellSpacing(new Dimension(0, 0));
@@ -551,7 +539,8 @@ public class VentanaCoordinador extends JFrame {
         tabla.setSelectionBackground(Tema.PANEL_CLARO);
         tabla.setSelectionForeground(Tema.TEXTO);
         tabla.setFillsViewportHeight(true);
-        tabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        // Se pueden elegir varios estudiantes (Ctrl o Shift + clic).
+        tabla.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
         JTableHeader h = tabla.getTableHeader();
         h.setReorderingAllowed(false);
@@ -599,29 +588,40 @@ public class VentanaCoordinador extends JFrame {
     private JPanel crearPie() {
         lblTotalPie.setFont(Tema.fuente(Font.PLAIN, 12f));
         lblTotalPie.setForeground(Tema.TEXTO_SUAVE);
+        lblTotalPie.setAlignmentX(Component.LEFT_ALIGNMENT);
+        JLabel pista = texto("Elige uno o varios estudiantes (Ctrl o Shift + clic)",
+                Font.PLAIN, 12f, Tema.TEXTO_SUAVE);
 
         btnPlataforma.addActionListener(ev -> abrirPlataforma());
-        btnConfirmar.addActionListener(ev -> confirmar());
-        btnNotificar.addActionListener(ev -> notificar());
+        btnPreSel.addActionListener(ev -> preRegistrar(true));
+        btnConfirmar.addActionListener(ev -> preRegistrar(false));
 
-        JPanel botones = new JPanel();
-        botones.setLayout(new BoxLayout(botones, BoxLayout.X_AXIS));
+        JPanel botones = new JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 0));
         botones.setOpaque(false);
-        botones.add(btnNotificar);   // solo se ve si quedó alguien pre-registrado sin notificar
-        botones.add(Box.createHorizontalStrut(8));
         botones.add(btnPlataforma);
-        botones.add(Box.createHorizontalStrut(8));
+        botones.add(btnPreSel);
         botones.add(btnConfirmar);
+
+        JPanel info = new JPanel();
+        info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
+        info.setOpaque(false);
+        info.add(lblTotalPie);
+        info.add(Box.createVerticalStrut(4));
+        info.add(pista);
 
         JPanel pie = new JPanel(new BorderLayout());
         pie.setOpaque(false);
-        pie.add(lblTotalPie, BorderLayout.WEST);
+        pie.add(info, BorderLayout.WEST);
         pie.add(botones, BorderLayout.EAST);
         return pie;
     }
 
     // ============================================================== Refrescar
     private void refrescarVista() {
+        // Se recuerda la selección para no perderla al refrescar la tabla.
+        Set<String> elegidos = new HashSet<>();
+        for (ListadoEnviado.Fila f : seleccionados()) elegidos.add(f.codigo());
+
         modelo.setRowCount(0);
         int total = 0;
         int pre = 0;
@@ -638,6 +638,12 @@ public class VentanaCoordinador extends JFrame {
                 });
             }
         }
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            if (elegidos.contains(String.valueOf(modelo.getValueAt(i, 1)))) {
+                tabla.addRowSelectionInterval(i, i);
+            }
+        }
+
         lblRecibidos.setText(String.valueOf(total));
         lblPreRegistrados.setText(String.valueOf(pre));
         lblPorPreRegistrar.setText(String.valueOf(total - pre));
@@ -649,14 +655,14 @@ public class VentanaCoordinador extends JFrame {
         lblTotalPie.setText(listado == null ? " " : "Total de estudiantes habilitados: " + total);
 
         btnConfirmar.setEnabled(total - pre > 0);
-        btnNotificar.setVisible(!porNotificar().isEmpty());
+        btnPreSel.setEnabled(total - pre > 0);
         campana.setCantidad(avisos().size());
         cartas.show(centro, listado == null ? "vacio" : "tabla");
     }
 
     // ================================================================ Acciones
 
-    /** Paso 1: enlace a la plataforma oficial del ICFES. */
+    /** Enlace a la plataforma oficial del ICFES. */
     private void abrirPlataforma() {
         try {
             if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
@@ -677,42 +683,50 @@ public class VentanaCoordinador extends JFrame {
                 "Plataforma del ICFES", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    /** Pasos 3 a 5: el Coordinador confirma el pre-registro indicando la fecha. */
-    private void confirmar() {
-        int n = porPreRegistrar().size();
-        if (n == 0) return;
-        DialogoFecha dlg = new DialogoFecha(this, n);
+    /**
+     * El Coordinador confirma el pre-registro indicando la fecha: de los estudiantes seleccionados
+     * (uno o varios) o de todos los que faltan.
+     */
+    private void preRegistrar(boolean soloSeleccionados) {
+        if (listado == null) return;
+
+        List<ListadoEnviado.Fila> lista = new ArrayList<>();
+        if (soloSeleccionados) {
+            List<ListadoEnviado.Fila> elegidos = seleccionados();
+            if (elegidos.isEmpty()) {
+                JOptionPane.showMessageDialog(this,
+                        "Primero selecciona uno o varios estudiantes en la tabla.");
+                return;
+            }
+            for (ListadoEnviado.Fila f : elegidos) {
+                if (!preRegistrados.containsKey(f.codigo())) lista.add(f);
+            }
+            if (lista.isEmpty()) {
+                JOptionPane.showMessageDialog(this,
+                        "Los estudiantes seleccionados ya están pre-registrados.");
+                return;
+            }
+        } else {
+            lista = porPreRegistrar();
+            if (lista.isEmpty()) return;
+        }
+
+        DialogoFecha dlg = new DialogoFecha(this, lista.size());
         dlg.setVisible(true);
         LocalDate fecha = dlg.fecha();
         if (fecha == null) return;
 
         try {
-            int hechos = confirmarPreRegistro(fecha);
+            int hechos = confirmarPreRegistro(fecha, lista);
             recargar();
             JOptionPane.showMessageDialog(this,
                     "Pre-registro confirmado para " + hechos + (hechos == 1 ? " estudiante" : " estudiantes")
-                            + ".\nSe notificó a cada estudiante.\n\n"
+                            + ".\nSe notificó a " + (hechos == 1 ? "el estudiante" : "cada estudiante") + ".\n\n"
                             + "El ICFES enviará a cada uno un correo con sus credenciales para continuar con "
                             + "el registro y el pago.");
         } catch (IOException ex) {
             recargar();
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    /** Reintento de «Notificar a los estudiantes» (solo aparece si una notificación no se pudo guardar). */
-    private void notificar() {
-        try {
-            int hechas = notificarPendientes();
-            recargar();
-            JOptionPane.showMessageDialog(this, hechas == 1
-                    ? "Se notificó a 1 estudiante."
-                    : "Se notificó a " + hechas + " estudiantes.");
-        } catch (IOException ex) {
-            recargar();
-            JOptionPane.showMessageDialog(this,
-                    "No se pudieron guardar las notificaciones:\n" + ex.getMessage(),
-                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -734,7 +748,8 @@ public class VentanaCoordinador extends JFrame {
             JLabel t1 = etiqueta("Confirmar pre-registro", Font.BOLD, 17f, Tema.TEXTO);
             JLabel t2 = new JLabel("<html><div style='width:330px'>Confirma que cargaste el listado en el ICFES y que el "
                     + "pre-registro de <b>" + cantidad + (cantidad == 1 ? " estudiante" : " estudiantes")
-                    + "</b> fue realizado. Después se notificará a cada estudiante.</div></html>");
+                    + "</b> fue realizado. Después se notificará a "
+                    + (cantidad == 1 ? "el estudiante" : "cada estudiante") + ".</div></html>");
             t2.setFont(Tema.fuente(Font.PLAIN, 13f));
             t2.setForeground(Tema.TEXTO_SUAVE);
             t2.setAlignmentX(Component.LEFT_ALIGNMENT);
