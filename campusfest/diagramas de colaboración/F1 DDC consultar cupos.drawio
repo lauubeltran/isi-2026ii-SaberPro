@@ -1,6 +1,6 @@
 <mxfile host="Electron">
   <diagram name="Página-1" id="wcAGMhBPqZIS3QAnpMa5">
-    <mxGraphModel dx="1414" dy="841" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="691" dy="832" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -79,34 +79,34 @@
             <mxPoint x="870" y="270" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="AP-zsHmTxil0S6V5jeYD-26" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#FFFFFF);" value="Seleccionar el evento para consultar cupos" vertex="1">
+        <mxCell id="AP-zsHmTxil0S6V5jeYD-26" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#FFFFFF);" value="1. Seleccionar el evento para consultar cupos" vertex="1">
           <mxGeometry height="30" width="110" x="210" y="150" as="geometry" />
         </mxCell>
-        <mxCell id="AP-zsHmTxil0S6V5jeYD-27" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#FFFFFF);" value="Solicitar calculo de disponibilidad" vertex="1">
+        <mxCell id="AP-zsHmTxil0S6V5jeYD-27" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#FFFFFF);" value="2. Solicitar calculo de disponibilidad" vertex="1">
           <mxGeometry height="30" width="110" x="570" y="150" as="geometry" />
         </mxCell>
-        <mxCell id="AP-zsHmTxil0S6V5jeYD-28" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#FFFFFF);" value="Solicitar aforo y cupos bloqueados" vertex="1">
+        <mxCell id="AP-zsHmTxil0S6V5jeYD-28" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#FFFFFF);" value="3. Solicitar aforo y cupos bloqueados" vertex="1">
           <mxGeometry height="30" width="110" x="930" y="70" as="geometry" />
         </mxCell>
-        <mxCell id="AP-zsHmTxil0S6V5jeYD-29" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#FFFFFF);" value="Solicitar reservas confirmadas y pendientes vigentes" vertex="1">
+        <mxCell id="AP-zsHmTxil0S6V5jeYD-29" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#FFFFFF);" value="5.Solicitar reservas confirmadas y pendientes vigentes" vertex="1">
           <mxGeometry height="30" width="140" x="960" y="250" as="geometry" />
         </mxCell>
-        <mxCell id="AP-zsHmTxil0S6V5jeYD-30" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#FFFFFF);" value="Calcular cupos disponibles" vertex="1">
+        <mxCell id="AP-zsHmTxil0S6V5jeYD-30" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#FFFFFF);" value="7. Calcular cupos disponibles" vertex="1">
           <mxGeometry height="30" width="110" x="700" y="320" as="geometry" />
         </mxCell>
         <mxCell id="AP-zsHmTxil0S6V5jeYD-33" parent="1" style="shape=mxgraph.basic.arc;html=1;startAngle=0.3;endAngle=0.1;endArrow=classic;endFill=1;rotation=-45;strokeColor=light-dark(#000000,#0000CC);" value="" vertex="1">
           <mxGeometry height="50" width="50" x="730" y="270" as="geometry" />
         </mxCell>
-        <mxCell id="AP-zsHmTxil0S6V5jeYD-34" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#FFFFFF);" value="Devolver aforo y cupos bloqueados" vertex="1">
+        <mxCell id="AP-zsHmTxil0S6V5jeYD-34" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#FFFFFF);" value="4. Devolver aforo y cupos bloqueados" vertex="1">
           <mxGeometry height="30" width="110" x="1000" y="170" as="geometry" />
         </mxCell>
-        <mxCell id="AP-zsHmTxil0S6V5jeYD-35" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#FFFFFF);" value="Devolver reservas confirmadas y pendientes vigentes" vertex="1">
+        <mxCell id="AP-zsHmTxil0S6V5jeYD-35" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#FFFFFF);" value="6.Devolver reservas confirmadas y pendientes vigentes" vertex="1">
           <mxGeometry height="30" width="140" x="860" y="355" as="geometry" />
         </mxCell>
-        <mxCell id="AP-zsHmTxil0S6V5jeYD-36" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#FFFFFF);" value="Devolver el resultado a pantalla" vertex="1">
+        <mxCell id="AP-zsHmTxil0S6V5jeYD-36" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#FFFFFF);" value="8. Devolver el resultado a pantalla" vertex="1">
           <mxGeometry height="30" width="140" x="555" y="270" as="geometry" />
         </mxCell>
-        <mxCell id="AP-zsHmTxil0S6V5jeYD-37" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#FFFFFF);" value="Mostrar los cupos disponibles" vertex="1">
+        <mxCell id="AP-zsHmTxil0S6V5jeYD-37" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#FFFFFF);" value="9. Mostrar los cupos disponibles" vertex="1">
           <mxGeometry height="30" width="140" x="195" y="260" as="geometry" />
         </mxCell>
       </root>
