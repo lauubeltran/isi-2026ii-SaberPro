@@ -1,8 +1,9 @@
 # Actores
+- Actor principal:
 1. Coordinador de pruebas del programa
    Recibe el listado de habilitados, lo lleva a la plataforma del ICFES, confirma el pre-registro (a uno, a varios o a todos), notifica y re-notifica
    a los estudiantes, ingresa y modifica las fechas clave, organiza simulacros y publica resultados.
-   
+- Actores secundarios   
 2. Estudiante
    Recibe notificaciones (correo y bandeja), debe registrarse y pagar, consulta fechas e inscribe simulacros y talleres. Necesita su propia sesión.
 
